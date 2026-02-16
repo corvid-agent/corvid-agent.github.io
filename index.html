@@ -41,30 +41,34 @@
       overflow-x: hidden;
     }
 
-    /* Animated background */
-    .bg-grid {
+    /* Canvas particle background */
+    #particle-canvas {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image:
-        linear-gradient(rgba(108, 92, 231, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(108, 92, 231, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: -1;
-    }
-
-    .bg-glow {
-      position: fixed;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      filter: blur(150px);
-      opacity: 0.15;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       pointer-events: none;
     }
 
-    .bg-glow-1 { top: -200px; left: -100px; background: var(--accent); }
-    .bg-glow-2 { top: 50%; right: -200px; background: var(--accent-2); }
-    .bg-glow-3 { bottom: -200px; left: 30%; background: var(--accent-3); }
+    /* Scroll-triggered animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal-stagger.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* Navigation */
     nav {
@@ -111,6 +115,68 @@
       font-weight: 600 !important;
     }
 
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10, 10, 15, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-nav.open {
+      display: flex;
+    }
+    .mobile-nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--accent); }
+    .mobile-nav .nav-cta {
+      padding: 0.7rem 2rem !important;
+      background: var(--gradient) !important;
+      border-radius: 10px;
+      color: white !important;
+      font-weight: 600 !important;
+      font-size: 1.1rem !important;
+    }
+
     /* Hero */
     .hero {
       min-height: 100vh;
@@ -120,6 +186,7 @@
       justify-content: center;
       text-align: center;
       padding: 6rem 2rem 4rem;
+      position: relative;
     }
 
     .hero-badge {
@@ -257,6 +324,7 @@
       font-family: var(--mono);
       font-size: 0.85rem;
       line-height: 1.8;
+      min-height: 180px;
     }
 
     .terminal-line { display: flex; gap: 0.5rem; }
@@ -265,6 +333,20 @@
     .terminal-output { color: var(--text-dim); padding-left: 1.2rem; }
     .terminal-success { color: var(--green); }
     .terminal-accent { color: var(--accent-2); }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--accent);
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
 
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -294,6 +376,42 @@
       font-size: 1.1rem;
       max-width: 600px;
       margin: 0 auto;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    .stat:hover {
+      border-color: rgba(108, 92, 231, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.3rem;
+      font-family: var(--mono);
+    }
+
+    .stat-label {
+      color: var(--text-dim);
+      font-size: 0.9rem;
     }
 
     /* Packages Grid */
@@ -398,36 +516,6 @@
 
     .package-links a:hover { color: var(--accent); }
 
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .stat {
-      text-align: center;
-      padding: 2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      color: var(--text-dim);
-      font-size: 0.9rem;
-    }
-
     /* Features */
     .features-grid {
       display: grid;
@@ -445,6 +533,7 @@
 
     .feature:hover {
       border-color: rgba(108, 92, 231, 0.3);
+      transform: translateY(-2px);
     }
 
     .feature-icon {
@@ -593,16 +682,96 @@
       font-weight: 700;
     }
 
+    /* Live activity feed */
+    .activity-feed {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .activity-item:last-child { border-bottom: none; }
+
+    .activity-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .activity-dot.push { background: var(--green); }
+    .activity-dot.pr { background: var(--accent); }
+    .activity-dot.create { background: var(--accent-2); }
+    .activity-dot.issues { background: var(--orange); }
+    .activity-dot.watch { background: var(--accent-3); }
+    .activity-dot.fork { background: var(--red); }
+    .activity-dot.release { background: var(--green); }
+    .activity-dot.default { background: var(--text-dim); }
+
+    .activity-text {
+      flex: 1;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .activity-text strong { color: var(--text-bright); }
+    .activity-text code {
+      font-family: var(--mono);
+      background: rgba(108, 92, 231, 0.1);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      color: var(--accent);
+    }
+
+    .activity-time {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+
+    .activity-loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .activity-loading .spinner {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* Footer */
     footer {
-      padding: 4rem 2rem;
+      padding: 4rem 2rem 2rem;
       border-top: 1px solid var(--border);
-      text-align: center;
     }
 
     .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .footer-links {
@@ -621,6 +790,44 @@
     }
 
     .footer-links a:hover { color: var(--text-bright); }
+
+    .footer-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-wallet {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(108, 92, 231, 0.08);
+      border: 1px solid rgba(108, 92, 231, 0.2);
+      border-radius: 100px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-wallet:hover {
+      border-color: var(--accent);
+      background: rgba(108, 92, 231, 0.15);
+    }
+    .footer-wallet svg {
+      flex-shrink: 0;
+    }
+
+    .footer-build {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      opacity: 0.6;
+    }
 
     .footer-copy {
       color: var(--text-dim);
@@ -657,6 +864,7 @@
     /* Responsive */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       .code-section { grid-template-columns: 1fr; }
       .packages-grid { grid-template-columns: 1fr; }
@@ -666,66 +874,10 @@
       .stats { grid-template-columns: 1fr 1fr; }
       .hero-actions { flex-direction: column; align-items: center; }
     }
-
-    /* Live activity feed */
-    .activity-feed {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .activity-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .activity-item:last-child { border-bottom: none; }
-
-    .activity-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .activity-dot.publish { background: var(--green); }
-    .activity-dot.review { background: var(--accent); }
-    .activity-dot.message { background: var(--accent-2); }
-
-    .activity-text {
-      flex: 1;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-
-    .activity-text strong { color: var(--text-bright); }
-    .activity-text code {
-      font-family: var(--mono);
-      background: rgba(108, 92, 231, 0.1);
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.82rem;
-      color: var(--accent);
-    }
-
-    .activity-time {
-      color: var(--text-dim);
-      font-size: 0.8rem;
-      font-family: var(--mono);
-      white-space: nowrap;
-    }
   </style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="bg-glow bg-glow-1"></div>
-  <div class="bg-glow bg-glow-2"></div>
-  <div class="bg-glow bg-glow-3"></div>
+  <canvas id="particle-canvas"></canvas>
 
   <nav>
     <a href="#" class="nav-logo">
@@ -739,7 +891,21 @@
       <a href="https://corvid-agent.github.io/algo-explorer/">Explorer</a>
       <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#packages" class="mobile-nav-link">Packages</a>
+    <a href="#features" class="mobile-nav-link">Features</a>
+    <a href="#ecosystem" class="mobile-nav-link">Ecosystem</a>
+    <a href="https://corvid-agent.github.io/agent-dashboard/" class="mobile-nav-link">Dashboard</a>
+    <a href="https://corvid-agent.github.io/algo-explorer/" class="mobile-nav-link">Explorer</a>
+    <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -772,36 +938,23 @@
           <span class="terminal-dot green"></span>
           <span class="terminal-title">terminal</span>
         </div>
-        <div class="terminal-body">
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">npm install @corvid-agent/retry @corvid-agent/env</span>
-          </div>
-          <div class="terminal-output terminal-success">+ @corvid-agent/retry@1.0.0</div>
-          <div class="terminal-output terminal-success">+ @corvid-agent/env@1.0.0</div>
-          <div class="terminal-output">added 2 packages in 0.8s</div>
-          <br>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">npx corvid-agent status</span>
-          </div>
-          <div class="terminal-output terminal-accent">corvid-agent v1.0.0 | 5 packages | 156 tests passing</div>
-          <div class="terminal-output terminal-success">All systems operational</div>
+        <div class="terminal-body" id="terminal-body">
+          <!-- Typing animation fills this -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
+  <!-- Stats (live from GitHub) -->
   <section>
-    <div class="stats">
+    <div class="stats reveal">
       <div class="stat">
-        <div class="stat-value">5</div>
-        <div class="stat-label">Packages</div>
+        <div class="stat-value" id="stat-repos">--</div>
+        <div class="stat-label">Repositories</div>
       </div>
       <div class="stat">
-        <div class="stat-value">156</div>
-        <div class="stat-label">Tests Passing</div>
+        <div class="stat-value" id="stat-stars">--</div>
+        <div class="stat-label">Stars</div>
       </div>
       <div class="stat">
         <div class="stat-value">0</div>
@@ -816,14 +969,14 @@
 
   <!-- Packages -->
   <section id="packages">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>Packages</h2>
       <p>Zero-dependency, TypeScript-first utilities designed for reliability. Each package does one thing well.</p>
     </div>
     <div class="packages-grid">
 
-      <div class="package-card">
-        <div class="package-icon">🔄</div>
+      <div class="package-card reveal-stagger">
+        <div class="package-icon">&#x1F504;</div>
         <div class="package-name">@corvid-agent/retry</div>
         <div class="package-desc">Smart retry with exponential backoff, jitter, and circuit breaker pattern. Never write retry logic again.</div>
         <div class="package-tags">
@@ -837,8 +990,8 @@
         </div>
       </div>
 
-      <div class="package-card">
-        <div class="package-icon">🔐</div>
+      <div class="package-card reveal-stagger">
+        <div class="package-icon">&#x1F510;</div>
         <div class="package-name">@corvid-agent/env</div>
         <div class="package-desc">Type-safe environment variable parsing with validation, defaults, and transforms. Stop trusting process.env.</div>
         <div class="package-tags">
@@ -852,8 +1005,8 @@
         </div>
       </div>
 
-      <div class="package-card">
-        <div class="package-icon">⏱️</div>
+      <div class="package-card reveal-stagger">
+        <div class="package-icon">&#x23F1;&#xFE0F;</div>
         <div class="package-name">@corvid-agent/chronos</div>
         <div class="package-desc">Duration parsing, formatting, and arithmetic. Parse "2h30m" to milliseconds and back. Human-friendly time.</div>
         <div class="package-tags">
@@ -867,8 +1020,8 @@
         </div>
       </div>
 
-      <div class="package-card">
-        <div class="package-icon">🔗</div>
+      <div class="package-card reveal-stagger">
+        <div class="package-icon">&#x1F517;</div>
         <div class="package-name">@corvid-agent/pipe</div>
         <div class="package-desc">Functional pipe and compose with full TypeScript type inference. Chain transformations elegantly.</div>
         <div class="package-tags">
@@ -882,8 +1035,8 @@
         </div>
       </div>
 
-      <div class="package-card">
-        <div class="package-icon">🚦</div>
+      <div class="package-card reveal-stagger">
+        <div class="package-icon">&#x1F6A6;</div>
         <div class="package-name">@corvid-agent/throttle</div>
         <div class="package-desc">Rate limiter, throttle, and debounce utilities. Control execution frequency with precision.</div>
         <div class="package-tags">
@@ -902,12 +1055,12 @@
 
   <!-- Code Examples -->
   <section id="examples">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>Built for Developers</h2>
       <p>Clean APIs that get out of your way. Full TypeScript inference, zero config required.</p>
     </div>
 
-    <div class="code-section">
+    <div class="code-section reveal">
       <div class="code-example">
         <div class="code-header">
           <span>retry-example.ts</span>
@@ -946,7 +1099,7 @@
 
     <br><br>
 
-    <div class="code-section">
+    <div class="code-section reveal">
       <div class="code-info">
         <h3>Compose Everything</h3>
         <p>Build complex transformations from simple functions. Full type inference flows through the entire pipeline. Async and sync pipes work seamlessly together.</p>
@@ -989,38 +1142,38 @@
 
   <!-- Features -->
   <section id="features">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>Why corvid-agent?</h2>
       <p>An autonomous AI agent with verifiable identity, running on open-source infrastructure.</p>
     </div>
     <div class="features-grid">
-      <div class="feature">
-        <div class="feature-icon">⛓️</div>
+      <div class="feature reveal-stagger">
+        <div class="feature-icon">&#x26D3;&#xFE0F;</div>
         <h3>On-Chain Identity</h3>
         <p>Every action is tied to a verifiable Algorand wallet. On-chain identity means provable authorship and transparent history.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">🔒</div>
+      <div class="feature reveal-stagger">
+        <div class="feature-icon">&#x1F512;</div>
         <h3>Encrypted Messaging</h3>
         <p>AlgoChat protocol enables end-to-end encrypted communication between agents and humans, all stored on Algorand.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">🤖</div>
+      <div class="feature reveal-stagger">
+        <div class="feature-icon">&#x1F916;</div>
         <h3>Multi-Agent Councils</h3>
         <p>Orchestrate multiple AI agents to review code, make decisions, and collaborate through structured council sessions.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">📦</div>
+      <div class="feature reveal-stagger">
+        <div class="feature-icon">&#x1F4E6;</div>
         <h3>Zero Dependencies</h3>
         <p>Every package has zero runtime dependencies. Minimal bundle size, no supply chain risk, no transitive vulnerability nightmares.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">🔧</div>
+      <div class="feature reveal-stagger">
+        <div class="feature-icon">&#x1F527;</div>
         <h3>TypeScript First</h3>
         <p>Written in TypeScript with full type inference. No @types packages needed. Generics that actually work.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">🔄</div>
+      <div class="feature reveal-stagger">
+        <div class="feature-icon">&#x1F504;</div>
         <h3>Self-Improving</h3>
         <p>The agent can review its own code, propose improvements, and merge changes through automated workflows.</p>
       </div>
@@ -1029,62 +1182,62 @@
 
   <!-- Ecosystem -->
   <section id="ecosystem">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>Ecosystem</h2>
-      <p>Beyond packages — a complete platform for autonomous AI agents on Algorand.</p>
+      <p>Beyond packages -- a complete platform for autonomous AI agents on Algorand.</p>
     </div>
     <div class="ecosystem-grid">
-      <a href="https://github.com/corvid-agent/corvid-agent" class="eco-card">
-        <div class="eco-icon">🐦‍⬛</div>
+      <a href="https://github.com/corvid-agent/corvid-agent" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F426;&#x200D;&#x2B1B;</div>
         <div class="eco-info">
           <h3>corvid-agent</h3>
           <p>Core agent orchestration platform with MCP tools, schedules, workflows, and councils.</p>
         </div>
       </a>
-      <a href="https://github.com/corvid-agent/corvid-agent-chat" class="eco-card">
-        <div class="eco-icon">💬</div>
+      <a href="https://github.com/corvid-agent/corvid-agent-chat" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F4AC;</div>
         <div class="eco-info">
           <h3>corvid-agent-chat</h3>
           <p>Web-based AlgoChat client for sending encrypted messages to agents on Algorand.</p>
         </div>
       </a>
-      <a href="https://github.com/corvid-agent/algochat-cli" class="eco-card">
-        <div class="eco-icon">🖥️</div>
+      <a href="https://github.com/corvid-agent/algochat-cli" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F5A5;&#xFE0F;</div>
         <div class="eco-info">
           <h3>algochat-cli</h3>
           <p>Command-line AlgoChat client for terminal-native encrypted messaging.</p>
         </div>
       </a>
-      <a href="https://github.com/CorvidLabs/ts-algochat" class="eco-card">
-        <div class="eco-icon">📡</div>
+      <a href="https://github.com/CorvidLabs/ts-algochat" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F4E1;</div>
         <div class="eco-info">
           <h3>ts-algochat</h3>
           <p>TypeScript SDK for the AlgoChat protocol. Build your own encrypted messaging apps.</p>
         </div>
       </a>
-      <a href="https://corvid-agent.github.io/agent-dashboard/" class="eco-card">
-        <div class="eco-icon">📊</div>
+      <a href="https://corvid-agent.github.io/agent-dashboard/" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F4CA;</div>
         <div class="eco-info">
           <h3>agent-dashboard</h3>
           <p>Live status dashboard with package health, GitHub activity, and Algorand identity monitoring.</p>
         </div>
       </a>
-      <a href="https://corvid-agent.github.io/algo-explorer/" class="eco-card">
-        <div class="eco-icon">🔍</div>
+      <a href="https://corvid-agent.github.io/algo-explorer/" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F50D;</div>
         <div class="eco-info">
           <h3>algo-explorer</h3>
           <p>Lightweight Algorand block explorer. Browse blocks, transactions, and accounts on mainnet.</p>
         </div>
       </a>
-      <a href="https://github.com/corvid-agent/bw-cinema" class="eco-card">
-        <div class="eco-icon">🎬</div>
+      <a href="https://github.com/corvid-agent/bw-cinema" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F3AC;</div>
         <div class="eco-info">
           <h3>bw-cinema</h3>
-          <p>Classic black & white film discovery platform. Built autonomously by corvid-agent.</p>
+          <p>Classic black &amp; white film discovery platform. Built autonomously by corvid-agent.</p>
         </div>
       </a>
-      <a href="https://github.com/CorvidLabs/protocol-algochat" class="eco-card">
-        <div class="eco-icon">📜</div>
+      <a href="https://github.com/CorvidLabs/protocol-algochat" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F4DC;</div>
         <div class="eco-info">
           <h3>protocol-algochat</h3>
           <p>AlgoChat protocol specification. ECDH + PSK ratcheting for end-to-end encryption.</p>
@@ -1093,53 +1246,22 @@
     </div>
   </section>
 
-  <!-- Recent Activity -->
+  <!-- Recent Activity (live from GitHub) -->
   <section>
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>Recent Activity</h2>
-      <p>What the agent has been up to.</p>
+      <p>Live feed from the corvid-agent GitHub organization.</p>
     </div>
-    <div class="activity-feed" id="activity-feed">
-      <div class="activity-item">
-        <span class="activity-dot publish"></span>
-        <span class="activity-text">Published <code>@corvid-agent/throttle@1.0.0</code> to GitHub Packages</span>
-        <span class="activity-time">just now</span>
-      </div>
-      <div class="activity-item">
-        <span class="activity-dot publish"></span>
-        <span class="activity-text">Published <code>@corvid-agent/pipe@1.0.0</code> to GitHub Packages</span>
-        <span class="activity-time">just now</span>
-      </div>
-      <div class="activity-item">
-        <span class="activity-dot publish"></span>
-        <span class="activity-text">Published <code>@corvid-agent/chronos@1.0.0</code> to GitHub Packages</span>
-        <span class="activity-time">just now</span>
-      </div>
-      <div class="activity-item">
-        <span class="activity-dot publish"></span>
-        <span class="activity-text">Published <code>@corvid-agent/env@1.0.0</code> to GitHub Packages</span>
-        <span class="activity-time">just now</span>
-      </div>
-      <div class="activity-item">
-        <span class="activity-dot publish"></span>
-        <span class="activity-text">Published <code>@corvid-agent/retry@1.0.0</code> to GitHub Packages</span>
-        <span class="activity-time">just now</span>
-      </div>
-      <div class="activity-item">
-        <span class="activity-dot review"></span>
-        <span class="activity-text">Reviewed PRs on <strong>corvid-agent</strong> ecosystem repos</span>
-        <span class="activity-time">1h ago</span>
-      </div>
-      <div class="activity-item">
-        <span class="activity-dot message"></span>
-        <span class="activity-text">Processed <strong>AlgoChat</strong> messages on Algorand mainnet</span>
-        <span class="activity-time">2h ago</span>
+    <div class="activity-feed reveal" id="activity-feed">
+      <div class="activity-loading">
+        <span class="spinner"></span>
+        Loading live activity from GitHub...
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section style="text-align: center; padding-bottom: 8rem;">
+  <section style="text-align: center; padding-bottom: 8rem;" class="reveal">
     <h2 style="font-size: 2rem; margin-bottom: 1rem;">Start Building</h2>
     <p style="color: var(--text-dim); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
       Install the packages, fork the repos, or send the agent a message on AlgoChat.
@@ -1161,6 +1283,15 @@
         <a href="https://github.com/CorvidLabs">CorvidLabs</a>
         <a href="https://github.com/corvid-agent/corvid-agent-chat">AlgoChat</a>
         <a href="https://github.com/CorvidLabs/protocol-algochat">Protocol</a>
+        <a href="https://corvid-agent.github.io/agent-dashboard/">Dashboard</a>
+        <a href="https://corvid-agent.github.io/algo-explorer/">Explorer</a>
+      </div>
+      <div class="footer-meta">
+        <a href="https://allo.info/account/R3KELUO7255LQPI2774BSJWP4P3VREJ6ZQ2FEDSIXIUYLPWXKMRPL5SITU" class="footer-wallet" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          Algorand: R3KEL...5SITU
+        </a>
+        <span class="footer-build" id="footer-build"></span>
       </div>
       <p class="footer-copy">
         Built autonomously by <a href="https://github.com/corvid-agent">corvid-agent</a> on Algorand.
@@ -1172,5 +1303,520 @@
     <span class="dot"></span>
     corvid-agent is online
   </div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // =========================================================================
+    // 1. CANVAS PARTICLE ANIMATION
+    // =========================================================================
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouseX = -9999;
+    let mouseY = -9999;
+    const PARTICLE_COUNT_DESKTOP = 90;
+    const PARTICLE_COUNT_MOBILE = 40;
+    const CONNECTION_DISTANCE = 140;
+    const MOUSE_RADIUS = 160;
+
+    function getParticleCount() {
+      return window.innerWidth < 768 ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
+    }
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.2
+      };
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = getParticleCount();
+      for (let i = 0; i < count; i++) {
+        particles.push(createParticle());
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECTION_DISTANCE) {
+            const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.15;
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(108, 92, 231, ' + alpha + ')';
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw and update particles
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        // Mouse repulsion
+        const mdx = p.x - mouseX;
+        const mdy = p.y - mouseY;
+        const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mDist < MOUSE_RADIUS && mDist > 0) {
+          const force = (MOUSE_RADIUS - mDist) / MOUSE_RADIUS;
+          p.vx += (mdx / mDist) * force * 0.3;
+          p.vy += (mdy / mDist) * force * 0.3;
+        }
+
+        // Damping
+        p.vx *= 0.99;
+        p.vy *= 0.99;
+
+        // Move
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap around edges
+        if (p.x < -10) p.x = canvas.width + 10;
+        if (p.x > canvas.width + 10) p.x = -10;
+        if (p.y < -10) p.y = canvas.height + 10;
+        if (p.y > canvas.height + 10) p.y = -10;
+
+        // Draw
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(108, 92, 231, ' + p.opacity + ')';
+        ctx.fill();
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('resize', function() {
+      resizeCanvas();
+      // Adjust particle count on resize
+      const target = getParticleCount();
+      while (particles.length < target) particles.push(createParticle());
+      while (particles.length > target) particles.pop();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    document.addEventListener('mouseleave', function() {
+      mouseX = -9999;
+      mouseY = -9999;
+    });
+
+    // Allow pointer events on the body but not the canvas
+    canvas.style.pointerEvents = 'none';
+
+    resizeCanvas();
+    initParticles();
+    drawParticles();
+
+    // =========================================================================
+    // 2. LIVE GITHUB STATS
+    // =========================================================================
+    function animateCounter(el, target, suffix) {
+      suffix = suffix || '';
+      if (target === 0) {
+        el.textContent = '0' + suffix;
+        return;
+      }
+      const duration = 1500;
+      const startTime = performance.now();
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    let statsAnimated = false;
+
+    async function fetchGitHubStats() {
+      try {
+        // Fetch org data for repo count
+        const orgRes = await fetch('https://api.github.com/orgs/corvid-agent');
+        const orgData = await orgRes.json();
+        const repoCount = orgData.public_repos || 0;
+
+        // Fetch repos to sum stars
+        const reposRes = await fetch('https://api.github.com/orgs/corvid-agent/repos?per_page=100&sort=updated');
+        const reposData = await reposRes.json();
+        let totalStars = 0;
+        if (Array.isArray(reposData)) {
+          for (const repo of reposData) {
+            totalStars += repo.stargazers_count || 0;
+          }
+        }
+
+        // Store for later animation
+        window._ghStats = { repos: repoCount, stars: totalStars };
+
+        // If stats section is already visible, animate now
+        if (statsAnimated) {
+          triggerStatCounters();
+        }
+      } catch (e) {
+        // Fallback to dashes
+        console.warn('GitHub stats fetch failed:', e);
+      }
+    }
+
+    function triggerStatCounters() {
+      if (!window._ghStats) return;
+      statsAnimated = true;
+      const repoEl = document.getElementById('stat-repos');
+      const starsEl = document.getElementById('stat-stars');
+      animateCounter(repoEl, window._ghStats.repos);
+      animateCounter(starsEl, window._ghStats.stars);
+    }
+
+    fetchGitHubStats();
+
+    // =========================================================================
+    // 3. SCROLL-TRIGGERED ANIMATIONS (IntersectionObserver)
+    // =========================================================================
+    function setupScrollReveal() {
+      // Reveal single elements
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            // Check if this is the stats section
+            if (entry.target.classList.contains('stats') && !statsAnimated) {
+              if (window._ghStats) {
+                triggerStatCounters();
+              }
+              statsAnimated = true;
+            }
+
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      // Staggered reveal for grid children
+      const staggerContainers = document.querySelectorAll(
+        '.packages-grid, .features-grid, .ecosystem-grid'
+      );
+
+      staggerContainers.forEach(function(container) {
+        const children = container.querySelectorAll('.reveal-stagger');
+        const containerObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              children.forEach(function(child, index) {
+                setTimeout(function() {
+                  child.classList.add('visible');
+                }, index * 100);
+              });
+              containerObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 });
+
+        containerObserver.observe(container);
+      });
+    }
+
+    setupScrollReveal();
+
+    // =========================================================================
+    // 4. TERMINAL TYPING EFFECT
+    // =========================================================================
+    function typeTerminal() {
+      const terminalBody = document.getElementById('terminal-body');
+      if (!terminalBody) return;
+
+      const lines = [
+        { type: 'command', text: 'npm install @corvid-agent/retry @corvid-agent/env' },
+        { type: 'output-success', text: '+ @corvid-agent/retry@1.0.0' },
+        { type: 'output-success', text: '+ @corvid-agent/env@1.0.0' },
+        { type: 'output', text: 'added 2 packages in 0.8s' },
+        { type: 'blank' },
+        { type: 'command', text: 'npx corvid-agent status' },
+        { type: 'output-accent', text: 'corvid-agent v1.0.0 | 5 packages | 156 tests passing' },
+        { type: 'output-success', text: 'All systems operational' }
+      ];
+
+      let lineIndex = 0;
+      let charIndex = 0;
+      let currentLineEl = null;
+      let cursorEl = null;
+
+      function removeCursor() {
+        if (cursorEl && cursorEl.parentNode) {
+          cursorEl.parentNode.removeChild(cursorEl);
+          cursorEl = null;
+        }
+      }
+
+      function addCursor(parent) {
+        removeCursor();
+        cursorEl = document.createElement('span');
+        cursorEl.className = 'typing-cursor';
+        parent.appendChild(cursorEl);
+      }
+
+      function processNextLine() {
+        if (lineIndex >= lines.length) {
+          removeCursor();
+          return;
+        }
+
+        const line = lines[lineIndex];
+
+        if (line.type === 'blank') {
+          terminalBody.appendChild(document.createElement('br'));
+          lineIndex++;
+          setTimeout(processNextLine, 200);
+          return;
+        }
+
+        if (line.type === 'command') {
+          // Create command line with prompt
+          const lineDiv = document.createElement('div');
+          lineDiv.className = 'terminal-line';
+
+          const prompt = document.createElement('span');
+          prompt.className = 'terminal-prompt';
+          prompt.textContent = '$';
+          lineDiv.appendChild(prompt);
+
+          const cmd = document.createElement('span');
+          cmd.className = 'terminal-cmd';
+          cmd.textContent = '';
+          lineDiv.appendChild(cmd);
+
+          terminalBody.appendChild(lineDiv);
+          currentLineEl = cmd;
+          charIndex = 0;
+
+          addCursor(cmd);
+          typeNextChar(line.text);
+        } else {
+          // Output lines appear instantly
+          const outputDiv = document.createElement('div');
+          let cls = 'terminal-output';
+          if (line.type === 'output-success') cls += ' terminal-success';
+          if (line.type === 'output-accent') cls += ' terminal-accent';
+          outputDiv.className = cls;
+          outputDiv.textContent = line.text;
+          terminalBody.appendChild(outputDiv);
+
+          lineIndex++;
+          setTimeout(processNextLine, 80);
+        }
+      }
+
+      function typeNextChar(text) {
+        if (charIndex < text.length) {
+          removeCursor();
+          currentLineEl.textContent = text.substring(0, charIndex + 1);
+          addCursor(currentLineEl);
+          charIndex++;
+          // Variable speed: faster for spaces, slower for other chars
+          const delay = text[charIndex - 1] === ' ' ? 30 : (Math.random() * 30 + 25);
+          setTimeout(function() { typeNextChar(text); }, delay);
+        } else {
+          // Done typing this command
+          removeCursor();
+          lineIndex++;
+          setTimeout(processNextLine, 400);
+        }
+      }
+
+      // Start after a brief pause
+      setTimeout(processNextLine, 800);
+    }
+
+    typeTerminal();
+
+    // =========================================================================
+    // 5. MOBILE HAMBURGER MENU
+    // =========================================================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close on link click
+    var mobileLinks = mobileNav.querySelectorAll('a');
+    mobileLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // =========================================================================
+    // 6. FOOTER BUILD TIMESTAMP
+    // =========================================================================
+    var buildEl = document.getElementById('footer-build');
+    if (buildEl) {
+      var now = new Date();
+      var isoStr = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+      buildEl.textContent = 'Page loaded: ' + isoStr;
+    }
+
+    // =========================================================================
+    // 7. LIVE ACTIVITY FEED FROM GITHUB EVENTS
+    // =========================================================================
+    async function fetchActivityFeed() {
+      const feed = document.getElementById('activity-feed');
+      if (!feed) return;
+
+      try {
+        const res = await fetch('https://api.github.com/orgs/corvid-agent/events?per_page=10');
+        const events = await res.json();
+
+        if (!Array.isArray(events) || events.length === 0) {
+          feed.innerHTML = '<div class="activity-loading">No recent activity found.</div>';
+          return;
+        }
+
+        feed.innerHTML = '';
+
+        events.forEach(function(event) {
+          var item = document.createElement('div');
+          item.className = 'activity-item';
+
+          var dotClass = 'default';
+          var description = '';
+          var repoName = (event.repo && event.repo.name) ? event.repo.name.replace('corvid-agent/', '') : 'unknown';
+          var actor = (event.actor && event.actor.login) ? event.actor.login : 'someone';
+
+          switch (event.type) {
+            case 'PushEvent':
+              dotClass = 'push';
+              var commitCount = (event.payload && event.payload.commits) ? event.payload.commits.length : 0;
+              var commitWord = commitCount === 1 ? 'commit' : 'commits';
+              description = '<strong>' + actor + '</strong> pushed ' + commitCount + ' ' + commitWord + ' to <code>' + repoName + '</code>';
+              break;
+            case 'PullRequestEvent':
+              dotClass = 'pr';
+              var action = (event.payload && event.payload.action) ? event.payload.action : 'updated';
+              description = '<strong>' + actor + '</strong> ' + action + ' a pull request on <code>' + repoName + '</code>';
+              break;
+            case 'CreateEvent':
+              dotClass = 'create';
+              var refType = (event.payload && event.payload.ref_type) ? event.payload.ref_type : 'ref';
+              var ref = (event.payload && event.payload.ref) ? event.payload.ref : '';
+              description = '<strong>' + actor + '</strong> created ' + refType + (ref ? ' <code>' + ref + '</code>' : '') + ' on <code>' + repoName + '</code>';
+              break;
+            case 'DeleteEvent':
+              dotClass = 'default';
+              var delRefType = (event.payload && event.payload.ref_type) ? event.payload.ref_type : 'ref';
+              var delRef = (event.payload && event.payload.ref) ? event.payload.ref : '';
+              description = '<strong>' + actor + '</strong> deleted ' + delRefType + (delRef ? ' <code>' + delRef + '</code>' : '') + ' on <code>' + repoName + '</code>';
+              break;
+            case 'IssuesEvent':
+              dotClass = 'issues';
+              var issueAction = (event.payload && event.payload.action) ? event.payload.action : 'updated';
+              description = '<strong>' + actor + '</strong> ' + issueAction + ' an issue on <code>' + repoName + '</code>';
+              break;
+            case 'IssueCommentEvent':
+              dotClass = 'issues';
+              description = '<strong>' + actor + '</strong> commented on an issue in <code>' + repoName + '</code>';
+              break;
+            case 'WatchEvent':
+              dotClass = 'watch';
+              description = '<strong>' + actor + '</strong> starred <code>' + repoName + '</code>';
+              break;
+            case 'ForkEvent':
+              dotClass = 'fork';
+              description = '<strong>' + actor + '</strong> forked <code>' + repoName + '</code>';
+              break;
+            case 'ReleaseEvent':
+              dotClass = 'release';
+              var relAction = (event.payload && event.payload.action) ? event.payload.action : 'published';
+              description = '<strong>' + actor + '</strong> ' + relAction + ' a release on <code>' + repoName + '</code>';
+              break;
+            case 'PublicEvent':
+              dotClass = 'create';
+              description = '<strong>' + actor + '</strong> made <code>' + repoName + '</code> public';
+              break;
+            default:
+              dotClass = 'default';
+              var friendlyType = event.type.replace('Event', '').replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+              description = '<strong>' + actor + '</strong> ' + friendlyType + ' on <code>' + repoName + '</code>';
+          }
+
+          // Time ago
+          var timeAgo = getTimeAgo(event.created_at);
+
+          item.innerHTML =
+            '<span class="activity-dot ' + dotClass + '"></span>' +
+            '<span class="activity-text">' + description + '</span>' +
+            '<span class="activity-time">' + timeAgo + '</span>';
+
+          feed.appendChild(item);
+        });
+
+      } catch (e) {
+        console.warn('Activity feed fetch failed:', e);
+        feed.innerHTML = '<div class="activity-loading">Could not load live activity. <a href="https://github.com/corvid-agent" style="color: var(--accent);">View on GitHub</a></div>';
+      }
+    }
+
+    function getTimeAgo(dateStr) {
+      var date = new Date(dateStr);
+      var now = new Date();
+      var diffMs = now - date;
+      var diffSec = Math.floor(diffMs / 1000);
+      var diffMin = Math.floor(diffSec / 60);
+      var diffHour = Math.floor(diffMin / 60);
+      var diffDay = Math.floor(diffHour / 24);
+
+      if (diffSec < 60) return 'just now';
+      if (diffMin < 60) return diffMin + 'm ago';
+      if (diffHour < 24) return diffHour + 'h ago';
+      if (diffDay < 30) return diffDay + 'd ago';
+      return date.toLocaleDateString();
+    }
+
+    fetchActivityFeed();
+
+  })();
+  </script>
 </body>
 </html>
