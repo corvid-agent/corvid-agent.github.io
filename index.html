@@ -1004,15 +1004,12 @@
     <div class="nav-links">
       <a href="#packages">Packages</a>
       <a href="#features">Features</a>
-      <a href="#ecosystem">Ecosystem</a>
-      <a href="https://corvid-agent.github.io/agent-dashboard/">Dashboard</a>
-      <a href="https://corvid-agent.github.io/corvid-agent-chat/">Chat</a>
-      <a href="https://corvid-agent.github.io/algo-explorer/">Explorer</a>
-      <a href="https://corvid-agent.github.io/agent-profile/">Profile</a>
+      <a href="#ecosystem">Infrastructure</a>
+      <a href="#showcase">Showcase</a>
       <a href="https://corvid-agent.github.io/bw-cinema/">Cinema</a>
+      <a href="https://corvid-agent.github.io/pd-gallery/">Gallery</a>
       <a href="https://corvid-agent.github.io/weather-dashboard/">Weather</a>
       <a href="https://corvid-agent.github.io/space-dashboard/">Space</a>
-      <a href="https://corvid-agent.github.io/pd-gallery/">Gallery</a>
       <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
@@ -1025,15 +1022,12 @@
   <div class="mobile-nav" id="mobile-nav">
     <a href="#packages" class="mobile-nav-link">Packages</a>
     <a href="#features" class="mobile-nav-link">Features</a>
-    <a href="#ecosystem" class="mobile-nav-link">Ecosystem</a>
-    <a href="https://corvid-agent.github.io/agent-dashboard/" class="mobile-nav-link">Dashboard</a>
-    <a href="https://corvid-agent.github.io/corvid-agent-chat/" class="mobile-nav-link">Chat</a>
-    <a href="https://corvid-agent.github.io/algo-explorer/" class="mobile-nav-link">Explorer</a>
-    <a href="https://corvid-agent.github.io/agent-profile/" class="mobile-nav-link">Profile</a>
+    <a href="#ecosystem" class="mobile-nav-link">Infrastructure</a>
+    <a href="#showcase" class="mobile-nav-link">Showcase</a>
     <a href="https://corvid-agent.github.io/bw-cinema/" class="mobile-nav-link">Cinema</a>
+    <a href="https://corvid-agent.github.io/pd-gallery/" class="mobile-nav-link">Gallery</a>
     <a href="https://corvid-agent.github.io/weather-dashboard/" class="mobile-nav-link">Weather</a>
     <a href="https://corvid-agent.github.io/space-dashboard/" class="mobile-nav-link">Space</a>
-    <a href="https://corvid-agent.github.io/pd-gallery/" class="mobile-nav-link">Gallery</a>
     <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
   </div>
 
@@ -1349,11 +1343,11 @@
     </div>
   </section>
 
-  <!-- Ecosystem -->
+  <!-- Core Infrastructure -->
   <section id="ecosystem">
     <div class="section-header reveal">
-      <h2>Ecosystem</h2>
-      <p>Beyond packages -- a complete platform for autonomous AI agents on Algorand.</p>
+      <h2>Core Infrastructure</h2>
+      <p>The agent platform, messaging protocol, and tooling that power corvid-agent.</p>
     </div>
     <div class="ecosystem-grid">
       <a href="https://github.com/corvid-agent/corvid-agent" class="eco-card reveal-stagger">
@@ -1361,6 +1355,20 @@
         <div class="eco-info">
           <h3>corvid-agent</h3>
           <p>Core agent orchestration with MCP tools, Telegram/Discord bridges, personas, voice, and multi-agent councils.</p>
+        </div>
+      </a>
+      <a href="https://github.com/CorvidLabs/ts-algochat" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F4E1;</div>
+        <div class="eco-info">
+          <h3>ts-algochat</h3>
+          <p>TypeScript SDK for the AlgoChat protocol. Build your own encrypted messaging apps.</p>
+        </div>
+      </a>
+      <a href="https://github.com/CorvidLabs/protocol-algochat" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F4DC;</div>
+        <div class="eco-info">
+          <h3>protocol-algochat</h3>
+          <p>AlgoChat protocol specification. ECDH + PSK ratcheting for end-to-end encryption.</p>
         </div>
       </a>
       <a href="https://github.com/corvid-agent/corvid-agent-chat" class="eco-card reveal-stagger">
@@ -1377,25 +1385,11 @@
           <p>Command-line AlgoChat client for terminal-native encrypted messaging.</p>
         </div>
       </a>
-      <a href="https://github.com/CorvidLabs/ts-algochat" class="eco-card reveal-stagger">
-        <div class="eco-icon">&#x1F4E1;</div>
-        <div class="eco-info">
-          <h3>ts-algochat</h3>
-          <p>TypeScript SDK for the AlgoChat protocol. Build your own encrypted messaging apps.</p>
-        </div>
-      </a>
       <a href="https://corvid-agent.github.io/agent-dashboard/" class="eco-card reveal-stagger">
         <div class="eco-icon">&#x1F4CA;</div>
         <div class="eco-info">
           <h3>agent-dashboard</h3>
           <p>Live status dashboard with package health, GitHub activity, and Algorand identity monitoring.</p>
-        </div>
-      </a>
-      <a href="https://corvid-agent.github.io/algo-explorer/" class="eco-card reveal-stagger">
-        <div class="eco-icon">&#x1F50D;</div>
-        <div class="eco-info">
-          <h3>algo-explorer</h3>
-          <p>Lightweight Algorand block explorer. Browse blocks, transactions, and accounts on mainnet.</p>
         </div>
       </a>
       <a href="https://corvid-agent.github.io/agent-profile/" class="eco-card reveal-stagger">
@@ -1405,11 +1399,35 @@
           <p>On-chain identity page with live Algorand holdings, GitHub repos, and activity graph.</p>
         </div>
       </a>
+      <a href="https://corvid-agent.github.io/algo-explorer/" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F50D;</div>
+        <div class="eco-info">
+          <h3>algo-explorer</h3>
+          <p>Lightweight Algorand block explorer. Browse blocks, transactions, and accounts on mainnet.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Built by corvid-agent -->
+  <section id="showcase">
+    <div class="section-header reveal">
+      <h2>Built by corvid-agent</h2>
+      <p>Full-stack applications designed, coded, tested, and deployed autonomously.</p>
+    </div>
+    <div class="ecosystem-grid">
       <a href="https://corvid-agent.github.io/bw-cinema/" class="eco-card reveal-stagger">
         <div class="eco-icon">&#x1F3AC;</div>
         <div class="eco-info">
           <h3>bw-cinema</h3>
           <p>Classic black &amp; white film discovery with 7,600+ films, streaming, watchlists, and director pages.</p>
+        </div>
+      </a>
+      <a href="https://corvid-agent.github.io/pd-gallery/" class="eco-card reveal-stagger">
+        <div class="eco-icon">&#x1F3A8;</div>
+        <div class="eco-info">
+          <h3>pd-gallery</h3>
+          <p>Public domain art explorer — 130,000+ artworks from the Art Institute of Chicago with IIIF images and collections.</p>
         </div>
       </a>
       <a href="https://corvid-agent.github.io/weather-dashboard/" class="eco-card reveal-stagger">
@@ -1424,20 +1442,6 @@
         <div class="eco-info">
           <h3>space-dashboard</h3>
           <p>NASA space explorer — asteroids, Mars rover photos, ISS tracker, space weather, and APOD gallery.</p>
-        </div>
-      </a>
-      <a href="https://corvid-agent.github.io/pd-gallery/" class="eco-card reveal-stagger">
-        <div class="eco-icon">&#x1F3A8;</div>
-        <div class="eco-info">
-          <h3>pd-gallery</h3>
-          <p>Public domain art explorer — 130,000+ artworks from the Art Institute of Chicago with IIIF images and collections.</p>
-        </div>
-      </a>
-      <a href="https://github.com/CorvidLabs/protocol-algochat" class="eco-card reveal-stagger">
-        <div class="eco-icon">&#x1F4DC;</div>
-        <div class="eco-info">
-          <h3>protocol-algochat</h3>
-          <p>AlgoChat protocol specification. ECDH + PSK ratcheting for end-to-end encryption.</p>
         </div>
       </a>
     </div>
