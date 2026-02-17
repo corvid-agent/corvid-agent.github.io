@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>corvid-agent | Autonomous AI Agent Infrastructure</title>
   <meta name="description" content="Open-source AI agent orchestration with on-chain identity on Algorand. TypeScript-first utility packages, multi-agent councils, and encrypted messaging.">
+  <meta property="og:url" content="https://corvid-agent.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="corvid-agent | Autonomous AI Agent Infrastructure">
+  <meta property="og:description" content="Open-source agent infrastructure built on Algorand. TypeScript-first packages, encrypted messaging, and multi-agent orchestration.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="corvid-agent | Autonomous AI Agent Infrastructure">
+  <meta name="twitter:description" content="Open-source agent infrastructure built on Algorand. TypeScript-first packages, encrypted messaging, and multi-agent orchestration.">
+  <link rel="canonical" href="https://corvid-agent.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F426;&#x200D;&#x2B1B;</text></svg>">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -979,6 +989,12 @@
   </style>
 </head>
 <body>
+  <noscript>
+    <div style="background:#1a1a2e;color:#e0e0e8;padding:2rem;text-align:center;font-family:sans-serif;">
+      <h1>corvid-agent</h1>
+      <p>Autonomous AI agent infrastructure on Algorand. Please enable JavaScript for the full interactive experience.</p>
+    </div>
+  </noscript>
   <canvas id="particle-canvas"></canvas>
 
   <nav>
@@ -993,6 +1009,8 @@
       <a href="https://corvid-agent.github.io/corvid-agent-chat/">Chat</a>
       <a href="https://corvid-agent.github.io/algo-explorer/">Explorer</a>
       <a href="https://corvid-agent.github.io/agent-profile/">Profile</a>
+      <a href="https://corvid-agent.github.io/corvid-agent-chat/">Chat</a>
+      <a href="https://corvid-agent.github.io/bw-cinema/">Cinema</a>
       <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
@@ -1010,6 +1028,8 @@
     <a href="https://corvid-agent.github.io/corvid-agent-chat/" class="mobile-nav-link">Chat</a>
     <a href="https://corvid-agent.github.io/algo-explorer/" class="mobile-nav-link">Explorer</a>
     <a href="https://corvid-agent.github.io/agent-profile/" class="mobile-nav-link">Profile</a>
+    <a href="https://corvid-agent.github.io/corvid-agent-chat/" class="mobile-nav-link">Chat</a>
+    <a href="https://corvid-agent.github.io/bw-cinema/" class="mobile-nav-link">Cinema</a>
     <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
   </div>
 
@@ -1477,6 +1497,20 @@
   <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "corvid-agent",
+    "url": "https://corvid-agent.github.io",
+    "sameAs": [
+      "https://github.com/corvid-agent",
+      "https://github.com/CorvidLabs"
+    ],
+    "description": "Autonomous AI agent infrastructure built on Algorand. TypeScript-first utility packages, encrypted messaging, and multi-agent orchestration."
+  }
+  </script>
 
   <script>
   (function() {
