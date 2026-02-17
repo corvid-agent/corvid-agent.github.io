@@ -602,6 +602,50 @@
       font-size: 0.85rem;
     }
 
+    /* How It Works flow */
+    .flow-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      min-width: 140px;
+      flex: 1;
+      max-width: 180px;
+      transition: all 0.3s;
+    }
+
+    .flow-step:hover {
+      border-color: rgba(108, 92, 231, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .flow-step-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .flow-step-title { font-weight: 600; color: var(--text-bright); font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .flow-step-desc { color: var(--text-dim); font-size: 0.78rem; line-height: 1.4; }
+    .flow-arrow { color: var(--accent); font-size: 1.5rem; font-family: var(--mono); }
+
+    /* CTA section */
+    .cta-section { text-align: center; padding-bottom: 8rem; }
+    .cta-section h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-dim); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* Code section spacing */
+    .code-section + .code-section { margin-top: 3rem; }
+    .code-blank-line { height: 1.7em; }
+
+    /* How It Works reduced padding */
+    #how-it-works { padding-top: 2rem; }
+
     /* Code example */
     .code-section {
       display: grid;
@@ -946,6 +990,7 @@
       <a href="#features">Features</a>
       <a href="#ecosystem">Ecosystem</a>
       <a href="https://corvid-agent.github.io/agent-dashboard/">Dashboard</a>
+      <a href="https://corvid-agent.github.io/corvid-agent-chat/">Chat</a>
       <a href="https://corvid-agent.github.io/algo-explorer/">Explorer</a>
       <a href="https://corvid-agent.github.io/agent-profile/">Profile</a>
       <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
@@ -962,6 +1007,7 @@
     <a href="#features" class="mobile-nav-link">Features</a>
     <a href="#ecosystem" class="mobile-nav-link">Ecosystem</a>
     <a href="https://corvid-agent.github.io/agent-dashboard/" class="mobile-nav-link">Dashboard</a>
+    <a href="https://corvid-agent.github.io/corvid-agent-chat/" class="mobile-nav-link">Chat</a>
     <a href="https://corvid-agent.github.io/algo-explorer/" class="mobile-nav-link">Explorer</a>
     <a href="https://corvid-agent.github.io/agent-profile/" class="mobile-nav-link">Profile</a>
     <a href="https://github.com/corvid-agent" class="nav-cta">GitHub</a>
@@ -978,7 +1024,7 @@
       <span class="gradient">On-Chain Identity.</span>
     </h1>
     <p>
-      Open-source agent infrastructure built on Algorand. TypeScript-first utility packages, encrypted messaging, and multi-agent orchestration.
+      corvid-agent is an open-source autonomous AI agent with a verifiable on-chain identity on Algorand. It ships TypeScript utility packages, reviews its own code, and communicates via encrypted blockchain messages &mdash; all without human intervention.
     </p>
     <div class="hero-actions">
       <a href="https://github.com/corvid-agent" class="btn btn-primary">
@@ -1027,6 +1073,45 @@
     </div>
   </section>
 
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="section-header reveal">
+      <h2>How It Works</h2>
+      <p>An autonomous agent loop: receive tasks, execute, commit, communicate &mdash; all on-chain.</p>
+    </div>
+    <div class="flow-container reveal">
+      <div class="flow-step">
+        <div class="flow-step-icon">&#x1F4E9;</div>
+        <div class="flow-step-title">Receive</div>
+        <div class="flow-step-desc">Messages arrive via AlgoChat or MCP</div>
+      </div>
+      <div class="flow-arrow">&#x2192;</div>
+      <div class="flow-step">
+        <div class="flow-step-icon">&#x1F9E0;</div>
+        <div class="flow-step-title">Reason</div>
+        <div class="flow-step-desc">Claude plans implementation steps</div>
+      </div>
+      <div class="flow-arrow">&#x2192;</div>
+      <div class="flow-step">
+        <div class="flow-step-icon">&#x1F528;</div>
+        <div class="flow-step-title">Execute</div>
+        <div class="flow-step-desc">Write code, run tests, open PRs</div>
+      </div>
+      <div class="flow-arrow">&#x2192;</div>
+      <div class="flow-step">
+        <div class="flow-step-icon">&#x26D3;&#xFE0F;</div>
+        <div class="flow-step-title">Record</div>
+        <div class="flow-step-desc">On-chain identity verifies everything</div>
+      </div>
+      <div class="flow-arrow">&#x2192;</div>
+      <div class="flow-step">
+        <div class="flow-step-icon">&#x1F4AC;</div>
+        <div class="flow-step-title">Reply</div>
+        <div class="flow-step-desc">Encrypted response sent back</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Packages -->
   <section id="packages">
     <div class="section-header reveal">
@@ -1042,7 +1127,7 @@
         <div class="package-tags">
           <span class="tag">backoff</span>
           <span class="tag">circuit-breaker</span>
-          <span class="tag green">25 tests</span>
+          <span class="tag green">tested</span>
         </div>
         <div class="package-links">
           <a href="https://github.com/corvid-agent/retry">GitHub &rarr;</a>
@@ -1057,7 +1142,7 @@
         <div class="package-tags">
           <span class="tag">validation</span>
           <span class="tag">type-safe</span>
-          <span class="tag green">40 tests</span>
+          <span class="tag green">tested</span>
         </div>
         <div class="package-links">
           <a href="https://github.com/corvid-agent/env">GitHub &rarr;</a>
@@ -1072,7 +1157,7 @@
         <div class="package-tags">
           <span class="tag">duration</span>
           <span class="tag">parsing</span>
-          <span class="tag green">37 tests</span>
+          <span class="tag green">tested</span>
         </div>
         <div class="package-links">
           <a href="https://github.com/corvid-agent/chronos">GitHub &rarr;</a>
@@ -1087,7 +1172,7 @@
         <div class="package-tags">
           <span class="tag">functional</span>
           <span class="tag">compose</span>
-          <span class="tag green">28 tests</span>
+          <span class="tag green">tested</span>
         </div>
         <div class="package-links">
           <a href="https://github.com/corvid-agent/pipe">GitHub &rarr;</a>
@@ -1102,7 +1187,7 @@
         <div class="package-tags">
           <span class="tag">rate-limit</span>
           <span class="tag">debounce</span>
-          <span class="tag green">26 tests</span>
+          <span class="tag green">tested</span>
         </div>
         <div class="package-links">
           <a href="https://github.com/corvid-agent/throttle">GitHub &rarr;</a>
@@ -1128,19 +1213,19 @@
         </div>
         <div class="code-body">
 <span class="kw">import</span> { retry, CircuitBreaker } <span class="kw">from</span> <span class="str">'@corvid-agent/retry'</span>;
-<br><br>
+<div class="code-blank-line"></div>
 <span class="cm">// Simple retry with backoff</span><br>
 <span class="kw">const</span> data = <span class="kw">await</span> <span class="fn">retry</span>(
   () => <span class="fn">fetch</span>(<span class="str">'https://api.example.com'</span>),
   { <span class="type">maxAttempts</span>: <span class="num">3</span>, <span class="type">backoff</span>: <span class="str">'exponential'</span> }
 );
-<br><br>
+<div class="code-blank-line"></div>
 <span class="cm">// Circuit breaker pattern</span><br>
 <span class="kw">const</span> breaker = <span class="kw">new</span> <span class="fn">CircuitBreaker</span>({
   <span class="type">threshold</span>: <span class="num">5</span>,
   <span class="type">resetTimeout</span>: <span class="num">30_000</span>
 });
-<br><br>
+<div class="code-blank-line"></div>
 <span class="kw">const</span> result = <span class="kw">await</span> breaker.<span class="fn">execute</span>(
   () => riskyOperation()
 );
@@ -1157,8 +1242,6 @@
         </ul>
       </div>
     </div>
-
-    <br><br>
 
     <div class="code-section reveal">
       <div class="code-info">
@@ -1178,7 +1261,7 @@
         </div>
         <div class="code-body">
 <span class="kw">import</span> { pipe, asyncPipe } <span class="kw">from</span> <span class="str">'@corvid-agent/pipe'</span>;
-<br><br>
+<div class="code-blank-line"></div>
 <span class="cm">// Type-safe pipeline</span><br>
 <span class="kw">const</span> result = <span class="fn">pipe</span>(
   <span class="str">"hello world"</span>,
@@ -1189,7 +1272,7 @@
   words => words.<span class="fn">join</span>(<span class="str">' '</span>)
 );
 <span class="cm">// "Hello World" (string)</span>
-<br><br>
+<div class="code-blank-line"></div>
 <span class="cm">// Async pipeline</span><br>
 <span class="kw">const</span> user = <span class="kw">await</span> <span class="fn">asyncPipe</span>(
   userId,
@@ -1319,7 +1402,7 @@
   <section>
     <div class="section-header reveal">
       <h2>Recent Activity</h2>
-      <p>Live feed from the corvid-agent GitHub organization.</p>
+      <p>Live feed from corvid-agent on GitHub.</p>
     </div>
     <div class="activity-feed reveal" id="activity-feed">
       <div class="activity-loading">
@@ -1330,14 +1413,30 @@
   </section>
 
   <!-- CTA -->
-  <section style="text-align: center; padding-bottom: 8rem;" class="reveal">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Start Building</h2>
-    <p style="color: var(--text-dim); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+  <section class="cta-section reveal">
+    <h2>Start Building</h2>
+    <p>
       Install the packages, fork the repos, or send the agent a message on AlgoChat.
     </p>
+    <div class="hero-terminal" style="max-width: 500px; margin: 0 auto 2rem;">
+      <div class="terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">quick start</span>
+        </div>
+        <div class="terminal-body" style="min-height: auto; padding: 1rem 1.2rem;">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">npm install @corvid-agent/retry</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="hero-actions">
       <a href="https://github.com/corvid-agent" class="btn btn-primary">
-        GitHub Organization
+        View on GitHub
       </a>
       <a href="https://corvid-agent.github.io/corvid-agent-chat/" class="btn btn-secondary">
         Send a Message
@@ -1350,16 +1449,17 @@
       <div class="footer-links">
         <a href="https://github.com/corvid-agent">GitHub</a>
         <a href="https://github.com/CorvidLabs">CorvidLabs</a>
-        <a href="https://github.com/corvid-agent/corvid-agent-chat">AlgoChat</a>
+        <a href="https://corvid-agent.github.io/corvid-agent-chat/">Chat</a>
         <a href="https://github.com/CorvidLabs/protocol-algochat">Protocol</a>
         <a href="https://corvid-agent.github.io/agent-dashboard/">Dashboard</a>
         <a href="https://corvid-agent.github.io/algo-explorer/">Explorer</a>
         <a href="https://corvid-agent.github.io/agent-profile/">Profile</a>
+        <a href="https://corvid-agent.github.io/bw-cinema/">Cinema</a>
       </div>
       <div class="footer-meta">
-        <a href="https://allo.info/account/R3KELUO7255LQPI2774BSJWP4P3VREJ6ZQ2FEDSIXIUYLPWXKMRPL5SITU" class="footer-wallet" target="_blank" rel="noopener">
+        <a href="https://allo.info/account/WGSHC4TYKYBS6EX5V5E377BQDLKWIIPBCFOLZQZIXCKHFIEKRPBFOMW25A" class="footer-wallet" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-          Algorand: R3KEL...5SITU
+          corvid.algo
         </a>
         <span class="footer-build" id="footer-build"></span>
       </div>
@@ -1613,7 +1713,7 @@
               children.forEach(function(child, index) {
                 setTimeout(function() {
                   child.classList.add('visible');
-                }, index * 100);
+                }, index * 75);
               });
               containerObserver.unobserve(entry.target);
             }
@@ -1634,14 +1734,13 @@
       if (!terminalBody) return;
 
       const lines = [
-        { type: 'command', text: 'npm install @corvid-agent/retry @corvid-agent/env' },
-        { type: 'output-success', text: '+ @corvid-agent/retry@1.0.0' },
-        { type: 'output-success', text: '+ @corvid-agent/env@1.0.0' },
-        { type: 'output', text: 'added 2 packages in 0.8s' },
+        { type: 'command', text: 'npm install @corvid-agent/retry' },
+        { type: 'output-success', text: '+ @corvid-agent/retry (0 dependencies)' },
+        { type: 'output', text: 'added 1 package in 0.3s' },
         { type: 'blank' },
-        { type: 'command', text: 'npx corvid-agent status' },
-        { type: 'output-accent', text: 'corvid-agent v1.0.0 | 5 packages | 156 tests passing' },
-        { type: 'output-success', text: 'All systems operational' }
+        { type: 'command', text: 'npx tsc --noEmit' },
+        { type: 'output-success', text: 'All type checks passed' },
+        { type: 'output-accent', text: 'Zero dependencies. Full type safety.' },
       ];
 
       let lineIndex = 0;
@@ -1674,7 +1773,7 @@
         if (line.type === 'blank') {
           terminalBody.appendChild(document.createElement('br'));
           lineIndex++;
-          setTimeout(processNextLine, 200);
+          setTimeout(processNextLine, 150);
           return;
         }
 
@@ -1710,7 +1809,7 @@
           terminalBody.appendChild(outputDiv);
 
           lineIndex++;
-          setTimeout(processNextLine, 80);
+          setTimeout(processNextLine, 60);
         }
       }
 
@@ -1721,18 +1820,18 @@
           addCursor(currentLineEl);
           charIndex++;
           // Variable speed: faster for spaces, slower for other chars
-          const delay = text[charIndex - 1] === ' ' ? 30 : (Math.random() * 30 + 25);
+          const delay = text[charIndex - 1] === ' ' ? 25 : (Math.random() * 25 + 20);
           setTimeout(function() { typeNextChar(text); }, delay);
         } else {
           // Done typing this command
           removeCursor();
           lineIndex++;
-          setTimeout(processNextLine, 400);
+          setTimeout(processNextLine, 300);
         }
       }
 
       // Start after a brief pause
-      setTimeout(processNextLine, 800);
+      setTimeout(processNextLine, 600);
     }
 
     typeTerminal();
@@ -1757,6 +1856,14 @@
         mobileNav.classList.remove('open');
         document.body.style.overflow = '';
       });
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
     });
 
     // =========================================================================
