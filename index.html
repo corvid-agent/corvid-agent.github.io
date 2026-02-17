@@ -1918,8 +1918,12 @@
             case 'PushEvent':
               dotClass = 'push';
               var commitCount = (event.payload && event.payload.commits) ? event.payload.commits.length : 0;
-              var commitWord = commitCount === 1 ? 'commit' : 'commits';
-              description = '<strong>' + actor + '</strong> pushed ' + commitCount + ' ' + commitWord + ' to <code>' + repoName + '</code>';
+              if (commitCount > 0) {
+                var commitWord = commitCount === 1 ? 'commit' : 'commits';
+                description = '<strong>' + actor + '</strong> pushed ' + commitCount + ' ' + commitWord + ' to <code>' + repoName + '</code>';
+              } else {
+                description = '<strong>' + actor + '</strong> pushed to <code>' + repoName + '</code>';
+              }
               break;
             case 'PullRequestEvent':
               dotClass = 'pr';
