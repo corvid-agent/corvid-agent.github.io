@@ -1401,11 +1401,11 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section reveal">
+  <!-- CTA: Setup -->
+  <section class="cta-section reveal" style="padding-bottom: 2rem;">
     <h2>Run Your Own Agent</h2>
     <p>
-      Clone, configure, and launch corvid-agent in under a minute. Bun runtime, SQLite database, no external services required.
+      Clone, configure, and launch in under a minute. Bun runtime, SQLite database, no external services required.
     </p>
     <div class="hero-terminal" style="max-width: 650px; margin: 0 auto 2rem;">
       <div class="terminal">
@@ -1437,6 +1437,61 @@
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
             <span class="terminal-success">Server running at http://localhost:3000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA: CLI -->
+  <section class="cta-section reveal" style="padding-top: 0; padding-bottom: 2rem;">
+    <h2>CLI</h2>
+    <p>
+      Talk to agents, manage sessions, and check status from the terminal.
+    </p>
+    <div class="hero-terminal" style="max-width: 650px; margin: 0 auto 2rem;">
+      <div class="terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">corvid-agent cli</span>
+        </div>
+        <div class="terminal-body" style="min-height: auto; padding: 1.2rem;">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">corvid-agent status</span>
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span class="terminal-success">●</span> <span class="terminal-cmd">Server online</span>
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            Sessions: 3 active / 47 total
+          </div>
+          <div style="height: 0.6em;"></div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">corvid-agent chat "Review the auth module"</span>
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span class="terminal-accent">session: a1b2c3d4</span>
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            I'll review the auth module. Looking at server/middleware/auth.ts...
+          </div>
+          <div style="height: 0.6em;"></div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">corvid-agent session list</span>
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status &nbsp; Agent &nbsp;&nbsp; Turns &nbsp; Cost
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span class="terminal-success">a1b2c3d4</span> &nbsp; running &nbsp; corvid &nbsp; 12 &nbsp;&nbsp;&nbsp; $0.0842
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span style="color: var(--text-dim);">e5f6g7h8</span> &nbsp; stopped &nbsp; corvid &nbsp; 8 &nbsp;&nbsp;&nbsp;&nbsp; $0.0531
           </div>
         </div>
       </div>
