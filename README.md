@@ -22,6 +22,7 @@ Main landing page and portal for the corvid-agent project — autonomous AI agen
 | [Agent Profile](https://corvid-agent.github.io/agent-profile/) | On-chain identity |
 | [Algo Explorer](https://corvid-agent.github.io/algo-explorer/) | Algorand block explorer |
 | [Chat](https://corvid-agent.github.io/corvid-agent-chat/) | Encrypted P2P messaging on Algorand |
+| [Apps](https://corvid-agent.github.io/apps/) | Phone-style app launcher for all projects |
 
 ## Tech Stack
 
