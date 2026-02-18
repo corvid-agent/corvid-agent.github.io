@@ -1447,7 +1447,7 @@
   <section class="cta-section reveal" style="padding-top: 0; padding-bottom: 2rem;">
     <h2>CLI</h2>
     <p>
-      Talk to agents, manage sessions, and check status from the terminal.
+      Interactive REPL, one-shot chat, session management — all from your terminal.
     </p>
     <div class="hero-terminal" style="max-width: 650px; margin: 0 auto 2rem;">
       <div class="terminal">
@@ -1460,38 +1460,39 @@
         <div class="terminal-body" style="min-height: auto; padding: 1.2rem;">
           <div class="terminal-line">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">corvid-agent status</span>
+            <span class="terminal-cmd">corvid-agent</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            <span class="terminal-success">●</span> <span class="terminal-cmd">Server online</span>
+            <span class="terminal-cmd" style="font-weight: bold;">corvid</span> v0.8.0 — agent: Qwen Coder 14B <span style="color: var(--text-dim);">(qwen3:14b)</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            Sessions: 3 active / 47 total
+            <span style="color: var(--text-dim);">project: corvid-agent (/home/corvid/corvid-agent)</span>
+          </div>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span style="color: var(--text-dim);">Type /help for commands, /quit to exit</span>
           </div>
           <div style="height: 0.6em;"></div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">corvid-agent chat "Review the auth module"</span>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span class="terminal-accent">&gt;</span> What files handle authentication?
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            <span class="terminal-accent">session: a1b2c3d4</span>
+            <span style="color: var(--text-dim);">┃</span> <span style="color: #c678dd;">run_command</span> <span style="color: var(--text-dim);">grep -r "auth" server/middleware/</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            I'll review the auth module. Looking at server/middleware/auth.ts...
+            The auth system lives in <span style="color: #56b6c2;">server/middleware/auth.ts</span>. It validates API keys and checks session tokens...
           </div>
           <div style="height: 0.6em;"></div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">corvid-agent session list</span>
+          <div class="terminal-output" style="padding-left: 1.2rem;">
+            <span class="terminal-accent">&gt;</span> !corvid-agent session list
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status &nbsp; Agent &nbsp;&nbsp; Turns &nbsp; Cost
+            ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status &nbsp; Agent &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Turns
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            <span class="terminal-success">a1b2c3d4</span> &nbsp; running &nbsp; corvid &nbsp; 12 &nbsp;&nbsp;&nbsp; $0.0842
+            <span class="terminal-success">a1b2c3d4</span> &nbsp; running &nbsp; Qwen Coder 14B &nbsp; 12
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            <span style="color: var(--text-dim);">e5f6g7h8</span> &nbsp; stopped &nbsp; corvid &nbsp; 8 &nbsp;&nbsp;&nbsp;&nbsp; $0.0531
+            <span style="color: var(--text-dim);">e5f6g7h8</span> &nbsp; stopped &nbsp; Qwen Coder 14B &nbsp; 8
           </div>
         </div>
       </div>
@@ -1817,14 +1818,16 @@
       if (!terminalBody) return;
 
       const lines = [
-        { type: 'command', text: 'corvid-agent create-task "Build a weather dashboard"' },
-        { type: 'output', text: 'Creating work task on branch agent/weather-dashboard...' },
-        { type: 'output-success', text: 'Scaffolded Angular 21 app with 22 components' },
-        { type: 'output-success', text: 'Tests passing (47/47). TypeScript clean.' },
+        { type: 'command', text: 'corvid' },
+        { type: 'output', text: 'corvid v0.8.0 \u2014 agent: CorvidAgent (claude-opus-4-6)' },
+        { type: 'output', text: 'project: corvid-agent (/Users/corvid/corvid-agent)' },
         { type: 'blank' },
-        { type: 'command', text: 'corvid-agent deploy --pages' },
-        { type: 'output-success', text: 'Deployed to corvid-agent.github.io/weather-dashboard' },
-        { type: 'output-accent', text: 'Autonomous. End-to-end. No human code.' },
+        { type: 'command', text: 'Review the auth middleware for security issues' },
+        { type: 'output', text: '  \u2503 read_file server/middleware/auth.ts' },
+        { type: 'output', text: '  \u2503 read_file server/lib/crypto.ts' },
+        { type: 'output-success', text: 'Found timing-safe comparison missing on L47. Fixing...' },
+        { type: 'output', text: '  \u2503 write_file server/middleware/auth.ts' },
+        { type: 'output-success', text: '\u2713 Fixed and tests passing.' },
       ];
 
       let lineIndex = 0;
