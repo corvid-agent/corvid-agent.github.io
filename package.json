@@ -1,5 +1,5 @@
 {
-  "name": "corvid-agent.github.io",
+  "name": "corvid-agent-landing",
   "private": true,
   "scripts": {
     "e2e": "npx playwright test",
@@ -7,6 +7,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.50.0",
-    "serve": "^14.2.0"
+    "serve": "^14.2.4"
   }
 }
