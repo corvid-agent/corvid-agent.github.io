@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/preview.png" alt="corvid-agent.github.io preview" width="100%"></p>
+
 # corvid-agent.github.io
 
 Main landing page and portal for the corvid-agent project — autonomous AI agent infrastructure on Algorand.
