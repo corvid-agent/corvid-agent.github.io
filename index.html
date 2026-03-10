@@ -1550,9 +1550,9 @@
 
   <!-- CTA: Setup -->
   <section id="run-your-own" class="cta-section reveal" style="padding-bottom: 2rem;">
-    <h2>Run Your Own Agent</h2>
+    <h2>Get Started in 60 Seconds</h2>
     <p>
-      Clone, configure, and launch in under a minute. Bun runtime, SQLite database, no external services required.
+      One command. The installer handles Bun, dependencies, environment setup, and launches the dashboard.
     </p>
     <div class="hero-terminal" style="max-width: 650px; margin: 0 auto 2rem;">
       <div class="terminal">
@@ -1565,22 +1565,10 @@
         <div class="terminal-body" style="min-height: auto; padding: 1.2rem;">
           <div class="terminal-line">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">git clone https://github.com/CorvidLabs/corvid-agent.git</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">cd corvid-agent && bun install</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">cp .env.example .env</span>
+            <span class="terminal-cmd">curl -fsSL https://raw.githubusercontent.com/CorvidLabs/corvid-agent/main/scripts/install.sh | bash</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            <span class="terminal-success"># add your ANTHROPIC_API_KEY to .env</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">bun run build:client && bun run dev</span>
+            <span class="terminal-success">✓ Bun installed · ✓ Deps installed · ✓ .env configured</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
             <span class="terminal-success">Server running at http://localhost:3000</span>
@@ -1588,6 +1576,9 @@
         </div>
       </div>
     </div>
+    <p style="opacity: 0.6; font-size: 0.9rem;">
+      Works on macOS, Linux, and WSL2. Only requires <code style="background: rgba(255,255,255,0.1); padding: 0.15em 0.4em; border-radius: 4px;">git</code>. Or <a href="https://github.com/CorvidLabs/corvid-agent#quick-start" style="color: var(--accent);">clone manually</a>.
+    </p>
   </section>
 
   <!-- CTA: CLI -->
