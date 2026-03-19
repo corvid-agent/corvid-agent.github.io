@@ -6,15 +6,15 @@
   <meta property="og:image:height" content="640">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>corvid-agent | Autonomous AI Agent Infrastructure</title>
-  <meta name="description" content="Open-source autonomous AI agent on Algorand. Builds full-stack web apps, native macOS apps, ships TypeScript packages, multi-agent councils, and encrypted messaging.">
+  <title>corvid-agent | Your Own AI Developer</title>
+  <meta name="description" content="Your own AI developer. Tell it what to build in plain English — it writes the code, runs the tests, and ships it. Open-source on Algorand.">
   <meta property="og:url" content="https://corvid-agent.github.io/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="corvid-agent | Autonomous AI Agent Infrastructure">
-  <meta property="og:description" content="Open-source autonomous AI agent on Algorand. Builds full-stack apps, ships TypeScript packages, encrypted messaging, and multi-agent orchestration.">
+  <meta property="og:title" content="corvid-agent | Your Own AI Developer">
+  <meta property="og:description" content="Your own AI developer. Tell it what to build in plain English — it writes the code, runs the tests, and ships it. Open-source on Algorand.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="corvid-agent | Autonomous AI Agent Infrastructure">
-  <meta name="twitter:description" content="Open-source autonomous AI agent on Algorand. Builds full-stack apps, ships TypeScript packages, encrypted messaging, and multi-agent orchestration.">
+  <meta name="twitter:title" content="corvid-agent | Your Own AI Developer">
+  <meta name="twitter:description" content="Your own AI developer. Tell it what to build in plain English — it writes the code, runs the tests, and ships it. Open-source on Algorand.">
   <link rel="canonical" href="https://corvid-agent.github.io/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -440,7 +440,7 @@
     /* Stats */
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 1.5rem;
       margin-bottom: 4rem;
     }
@@ -471,6 +471,66 @@
     .stat-label {
       color: var(--text-dim);
       font-size: 0.9rem;
+    }
+
+    /* Audience Chooser */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audience-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .audience-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .audience-card:hover::before { opacity: 1; }
+
+    .audience-card--cyan::before { background: var(--accent); }
+    .audience-card--cyan:hover { border-color: rgba(0, 229, 255, 0.4); }
+
+    .audience-card--magenta::before { background: var(--accent-2); }
+    .audience-card--magenta:hover { border-color: rgba(255, 102, 196, 0.4); }
+
+    .audience-card--green::before { background: var(--green); }
+    .audience-card--green:hover { border-color: rgba(0, 255, 136, 0.4); }
+
+    .audience-card--orange::before { background: var(--orange); }
+    .audience-card--orange:hover { border-color: rgba(255, 170, 0, 0.4); }
+
+    .audience-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .audience-title { font-size: 1.1rem; font-weight: 600; color: var(--text-bright); margin-bottom: 0.5rem; }
+    .audience-desc { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .audience-grid { grid-template-columns: 1fr; }
     }
 
     /* Packages Grid */
@@ -1024,13 +1084,13 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stats { grid-template-columns: repeat(3, 1fr); }
       .code-section { grid-template-columns: 1fr; }
       .packages-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
-      .stats { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
       .hero-actions { flex-direction: column; align-items: center; }
     }
   /* Accessibility (WCAG AA) */
@@ -1053,11 +1113,13 @@
       <span>corvid-agent</span>
     </a>
     <div class="nav-links">
+      <a href="#who-is-this-for">Who Is This For?</a>
       <a href="#showcase">Showcase</a>
       <a href="#mac-apps">Mac Apps</a>
       <a href="#features">Features</a>
       <a href="#ecosystem">Infrastructure</a>
       <a href="#packages">Packages</a>
+      <a href="https://corvidlabs.github.io/corvid-agent/business-guide.html">Business Guide</a>
       <a href="#run-your-own" class="nav-cta">Get Started</a>
       <a href="https://github.com/CorvidLabs" class="nav-cta">GitHub</a>
     </div>
@@ -1069,11 +1131,13 @@
   </nav>
 
   <div class="mobile-nav" id="mobile-nav">
+    <a href="#who-is-this-for" class="mobile-nav-link">Who Is This For?</a>
     <a href="#showcase" class="mobile-nav-link">Showcase</a>
     <a href="#mac-apps" class="mobile-nav-link">Mac Apps</a>
     <a href="#features" class="mobile-nav-link">Features</a>
     <a href="#ecosystem" class="mobile-nav-link">Infrastructure</a>
     <a href="#packages" class="mobile-nav-link">Packages</a>
+    <a href="https://corvidlabs.github.io/corvid-agent/business-guide.html" class="mobile-nav-link">Business Guide</a>
     <a href="#run-your-own" class="nav-cta">Get Started</a>
     <a href="https://github.com/CorvidLabs" class="nav-cta">GitHub</a>
   </div>
@@ -1087,20 +1151,29 @@
       Agent Online
     </div>
     <h1>
-      Autonomous AI.<br>
-      <span class="gradient">On-Chain Identity.</span>
+      Your own <span class="gradient">AI developer.</span>
     </h1>
     <p>
-      corvid-agent is an open-source autonomous AI agent with a verifiable on-chain identity on Algorand. It builds full-stack applications, ships TypeScript packages, reviews its own code, and communicates via encrypted blockchain messages &mdash; all without human intervention.
+      Tell it what to build in plain English &mdash; it writes the code, runs the tests, and ships it. No coding required. Open-source with a verifiable on-chain identity on Algorand.
     </p>
     <div class="hero-actions">
       <a href="#run-your-own" class="btn btn-primary">
-        Run Your Own Agent
+        Get Started Free
+      </a>
+      <a href="#who-is-this-for" class="btn btn-secondary">
+        Who Is This For?
       </a>
       <a href="https://github.com/CorvidLabs/corvid-agent" class="btn btn-secondary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         View Source
       </a>
+    </div>
+
+    <div style="margin-top: 2rem; animation: fadeInUp 0.6s ease-out 0.35s both;">
+      <div style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.6rem 1.2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; font-family: var(--mono); font-size: 0.875rem;">
+        <span style="color: var(--accent); user-select: none;">$</span>
+        <span style="color: var(--text-bright);">curl -fsSL https://raw.githubusercontent.com/CorvidLabs/corvid-agent/main/scripts/install.sh | bash</span>
+      </div>
     </div>
 
     <div class="hero-terminal">
@@ -1126,6 +1199,18 @@
         <div class="stat-label">Repositories</div>
       </div>
       <div class="stat">
+        <div class="stat-value">8,119</div>
+        <div class="stat-label">Tests Passing</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">157</div>
+        <div class="stat-label">Module Specs</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">43</div>
+        <div class="stat-label">MCP Tools</div>
+      </div>
+      <div class="stat">
         <div class="stat-value" id="stat-stars">--</div>
         <div class="stat-label">Stars</div>
       </div>
@@ -1133,10 +1218,36 @@
         <div class="stat-value">0</div>
         <div class="stat-label">Dependencies</div>
       </div>
-      <div class="stat">
-        <div class="stat-value">100%</div>
-        <div class="stat-label">TypeScript</div>
-      </div>
+    </div>
+  </section>
+
+  <!-- Who Is This For? -->
+  <section id="who-is-this-for">
+    <div class="section-header reveal">
+      <h2>Who Is This For?</h2>
+      <p>Whether you're a creator with an idea or an enterprise scaling operations, corvid-agent meets you where you are.</p>
+    </div>
+    <div class="audience-grid">
+      <a href="https://corvidlabs.github.io/corvid-agent/getting-started.html#creators" class="audience-card audience-card--cyan reveal-stagger">
+        <div class="audience-icon">&#x1F3A8;</div>
+        <div class="audience-title">Creators</div>
+        <div class="audience-desc">Have an idea but don't code? Describe what you want in plain English and the agent builds it.</div>
+      </a>
+      <a href="https://corvidlabs.github.io/corvid-agent/getting-started.html#developers" class="audience-card audience-card--magenta reveal-stagger">
+        <div class="audience-icon">&#x1F4BB;</div>
+        <div class="audience-title">Developers</div>
+        <div class="audience-desc">Supercharge your workflow. The agent writes tests, reviews code, ships PRs, and handles boilerplate.</div>
+      </a>
+      <a href="https://corvidlabs.github.io/corvid-agent/business-guide.html" class="audience-card audience-card--green reveal-stagger">
+        <div class="audience-icon">&#x1F3E2;</div>
+        <div class="audience-title">Businesses</div>
+        <div class="audience-desc">Automate customer support, internal tools, and workflows. Deploy on your infrastructure.</div>
+      </a>
+      <a href="https://corvidlabs.github.io/corvid-agent/enterprise.html" class="audience-card audience-card--orange reveal-stagger">
+        <div class="audience-icon">&#x1F30D;</div>
+        <div class="audience-title">Enterprise</div>
+        <div class="audience-desc">Multi-agent orchestration, governance councils, audit trails, and on-chain identity verification.</div>
+      </a>
     </div>
   </section>
 
@@ -1601,7 +1712,7 @@
             <span class="terminal-cmd">corvid-agent</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
-            <span class="terminal-cmd" style="font-weight: bold;">corvid</span> v0.35.0 — agent: CorvidAgent <span style="color: var(--text-dim);">(claude-opus-4-6)</span>
+            <span class="terminal-cmd" style="font-weight: bold;">corvid</span> v0.38.0 — agent: CorvidAgent <span style="color: var(--text-dim);">(claude-opus-4-6)</span>
           </div>
           <div class="terminal-output" style="padding-left: 1.2rem;">
             <span style="color: var(--text-dim);">project: corvid-agent (/Users/corvid-agent/corvid-agent)</span>
@@ -1656,6 +1767,8 @@
       <div class="footer-links">
         <a href="https://github.com/CorvidLabs/corvid-agent">Source</a>
         <a href="https://github.com/CorvidLabs">GitHub</a>
+        <a href="https://corvidlabs.github.io/corvid-agent/">Docs</a>
+        <a href="https://corvidlabs.github.io/corvid-agent/business-guide.html">Business Guide</a>
         <a href="https://corvid-agent.github.io/corvid-agent-chat/">Chat</a>
         <a href="https://corvid-agent.github.io/agent-dashboard/">Dashboard</a>
         <a href="https://corvid-agent.github.io/agent-profile/">Profile</a>
@@ -1703,7 +1816,7 @@
       "https://github.com/corvid-agent",
       "https://github.com/CorvidLabs"
     ],
-    "description": "Open-source autonomous AI agent on Algorand. Builds full-stack applications, ships TypeScript packages, encrypted messaging, and multi-agent orchestration."
+    "description": "Your own AI developer. Tell it what to build in plain English. Open-source on Algorand with 8,119 tests passing and 157 module specs."
   }
   </script>
 
@@ -1939,7 +2052,7 @@
 
       // Staggered reveal for grid children
       const staggerContainers = document.querySelectorAll(
-        '.packages-grid, .features-grid, .ecosystem-grid'
+        '.packages-grid, .features-grid, .ecosystem-grid, .audience-grid'
       );
 
       staggerContainers.forEach(function(container) {
@@ -1972,7 +2085,7 @@
 
       const lines = [
         { type: 'command', text: 'corvid' },
-        { type: 'output', text: 'corvid v0.35.0 \u2014 agent: CorvidAgent (claude-opus-4-6)' },
+        { type: 'output', text: 'corvid v0.38.0 \u2014 agent: CorvidAgent (claude-opus-4-6)' },
         { type: 'output', text: 'project: corvid-agent (/Users/corvid-agent/corvid-agent)' },
         { type: 'blank' },
         { type: 'command', text: 'Harden the AlgoChat bridge reconnect logic' },
