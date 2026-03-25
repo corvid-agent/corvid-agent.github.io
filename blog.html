@@ -779,6 +779,69 @@
   <main id="main-content" class="container">
     <div class="posts-grid" id="posts-container">
 
+      <!-- Post: v0.52.0 — Plugin System, Frictionless Onboarding, and 193 Specs -->
+      <article class="post post--full" id="v0-52-frictionless-onboarding"
+               data-tags="milestone,engineering,dx" data-date="2026-03-25"
+               data-search="v0.52 v0.49 v0.50 v0.51 plugin system onboarding docker compose settings CLI cookbook buddy mode flock routing security Zod validation frictionless adoption specs tests MCP tools deferred interaction ephemeral Discord responsive">
+        <div class="post-meta">
+          <time datetime="2026-03-25">2026-03-25</time>
+          <span class="post-tag tag-milestone">MILESTONE</span>
+          <span class="post-tag tag-engineering">ENGINEERING</span>
+          <span class="post-tag tag-dx">DX</span>
+        </div>
+        <h2><a href="#v0-52-frictionless-onboarding">v0.42 &rarr; v0.52 &mdash; Plugin System, Frictionless Onboarding, and 193 Specs</a></h2>
+
+        <p><strong>TL;DR:</strong> Ten releases in four days. The highlights: a full plugin system with capability-based permissions, one-command Docker deployment, a <code>settings</code> CLI command, responsive Discord interactions (deferred responses, ephemeral errors), and the spec count hitting 193. The goal: making CorvidAgent so easy to adopt that <em>not</em> using it feels like a mistake.</p>
+
+        <h3>Plugin System &mdash; Extend Without Forking</h3>
+
+        <p>The biggest architectural addition: a <strong>plugin system</strong> that lets developers add custom tools to CorvidAgent without modifying core code. Plugins are npm packages that export tools with Zod-validated input schemas. The runtime enforces <strong>capability-based permissions</strong> &mdash; a plugin must be explicitly granted capabilities like <code>db:read</code>, <code>network:outbound</code>, or <code>fs:project-dir</code> before its tools can use them.</p>
+
+        <p>Plugins run with a 30-second execution timeout, full capability checking, and namespaced tool names (<code>corvid_plugin_&lt;name&gt;_&lt;tool&gt;</code>). A new <code>corvid-agent plugin</code> CLI command handles the full lifecycle: load, unload, grant, revoke, list.</p>
+
+        <h3>Frictionless Onboarding</h3>
+
+        <p>We rebuilt the entire getting-started experience:</p>
+
+        <ul>
+          <li><strong>Root <code>docker-compose.yml</code></strong> &mdash; <code>docker compose up -d</code> just works from the repo root, no Bun needed</li>
+          <li><strong><code>bun run setup</code></strong> &mdash; friendly alias for the init wizard</li>
+          <li><strong><code>corvid-agent settings</code></strong> &mdash; view/update credits, Discord config, and API key status from the CLI</li>
+          <li><strong>Cookbook</strong> &mdash; copy-paste recipes for GitHub setup, Discord setup, team config, code review, deployment, and troubleshooting</li>
+          <li><strong>README rewrite</strong> &mdash; three clear setup paths (installer / clone / Docker) instead of one wall of text</li>
+        </ul>
+
+        <h3>Responsive Discord Interface</h3>
+
+        <p>Discord interactions now feel significantly faster. Slash commands like <code>/session</code> use <strong>deferred responses</strong> &mdash; users immediately see &ldquo;thinking&hellip;&rdquo; while the agent sets up threads and worktrees, instead of waiting for everything to complete before getting any feedback.</p>
+
+        <p>Permission errors (blocked users, insufficient roles, admin-only commands) are now <strong>ephemeral</strong> &mdash; only visible to the user who triggered them, keeping public channels clean.</p>
+
+        <h3>Security Hardening</h3>
+
+        <p>Every permission API endpoint now validates input with <strong>Zod schemas</strong>. Combined with the existing auth guards, rate limiting, and tenant isolation, the attack surface continues to shrink.</p>
+
+        <h3>Buddy Mode &amp; Flock Routing</h3>
+
+        <p>Agents can now work in pairs via <strong>Buddy Mode</strong> &mdash; a lead agent does the work while a buddy agent reviews at session end. The <strong>Flock Directory</strong> enables agents to discover each other by capability, making multi-agent collaboration automatic rather than manually configured.</p>
+
+        <h3>By the Numbers</h3>
+
+        <ul>
+          <li><strong>10 releases</strong> (v0.42 &rarr; v0.52) in 4 days</li>
+          <li><strong>193 module specs</strong> covering every public API surface</li>
+          <li><strong>8,700+ unit tests</strong> passing</li>
+          <li><strong>58 MCP tools</strong> available to agents</li>
+          <li><strong>0 external dependencies</strong> (still zero-dep)</li>
+          <li><strong>Plugin system</strong> with capability-based sandboxing</li>
+          <li><strong>4 bridge integrations</strong> (Discord, Telegram, Slack, AlgoChat)</li>
+        </ul>
+
+        <h3>What&rsquo;s Next</h3>
+
+        <p>The adoption playbook: make it trivial for developers to install, configure, and extend CorvidAgent. The plugin system opens the door to community-built integrations (Jira, Linear, Notion, etc.) without us needing to build every one. The next push is on the buddy system&rsquo;s tool visibility (ensuring review agents see full context) and publishing the first community plugin templates.</p>
+      </article>
+
       <!-- Post: Week of Velocity -->
       <article class="post post--full" id="week-of-velocity"
                data-tags="research,milestone,engineering" data-date="2026-03-21"
