@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CorvidAgent — Release Retrospective: v0.1.0 → v0.52.0</title>
+<title>CorvidAgent — Release Retrospective: v0.1.0 → v0.55.0</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -454,40 +454,40 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">42 days · 51 releases · 755 commits</div>
+    <div class="hero-badge">50 days · 55 releases · 997 commits</div>
     <h1>CorvidAgent<br>Release Retrospective</h1>
     <p>From a prototype CLI to a full autonomous AI agent platform with on-chain memory, multi-model orchestration, and cross-platform bridges.</p>
     <div class="hero-version-range">
       <span class="version">v0.1.0</span>
       <span class="arrow">→</span>
-      <span class="version">v0.41.0</span>
+      <span class="version">v0.55.0</span>
     </div>
   </section>
 
   <!-- Stats bar -->
   <section class="stats-bar">
     <div class="stat-card">
-      <div class="stat-number">51</div>
+      <div class="stat-number">55</div>
       <div class="stat-label">Releases</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">755</div>
+      <div class="stat-number">997</div>
       <div class="stat-label">Commits</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">6,982</div>
+      <div class="stat-number">10,500+</div>
       <div class="stat-label">Unit Tests</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">360</div>
+      <div class="stat-number">405</div>
       <div class="stat-label">E2E Tests</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">43</div>
+      <div class="stat-number">65</div>
       <div class="stat-label">MCP Tools</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">~300</div>
+      <div class="stat-number">~380</div>
       <div class="stat-label">API Endpoints</div>
     </div>
     <div class="stat-card">
@@ -921,11 +921,72 @@
     </div>
   </section>
 
+  <!-- Era 6: Scale -->
+  <section class="timeline-section">
+    <div class="container">
+    <div class="era">
+      <div class="era-header">
+        <div class="era-icon">&#x1F680;</div>
+        <div>
+          <div class="era-title">Scale — Provider Parity & Agent Observatory</div>
+          <div class="era-date">Mar 21 – Mar 27, 2026</div>
+        </div>
+        <div class="era-versions">v0.42.0 – v0.55.0</div>
+      </div>
+      <div class="era-body">
+        <div class="release-card">
+          <div class="release-header">
+            <span class="release-version">v0.42.0 – v0.50.0</span>
+            <span class="release-date">Mar 21 – Mar 24</span>
+          </div>
+          <ul class="release-highlights">
+            <li><span class="tag tag-feat">feat</span> <strong>Buddy mode</strong> — visible review rounds, default pairings, memory tools for review quality</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Flock: A2A HTTP transport</strong> replacing AlgoChat transport for agent communication</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Scheduler: on-chain attestation</strong> — daily activity attestation published on-chain</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Discord: tiered /message access</strong> with role-based tool gating</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Conversational agent presets</strong> and seed modules via AlgoChat</li>
+            <li><span class="tag tag-sec">sec</span> Zod input validation on all permission endpoints, CodeQL alert resolution</li>
+          </ul>
+        </div>
+        <div class="release-card">
+          <div class="release-header">
+            <span class="release-version">v0.51.0 – v0.54.0</span>
+            <span class="release-date">Mar 24 – Mar 26</span>
+          </div>
+          <ul class="release-highlights">
+            <li><span class="tag tag-feat">feat</span> <strong>Frictionless onboarding</strong> — Docker Compose, <code>bun run setup</code> wizard, one-line installer</li>
+            <li><span class="tag tag-feat">feat</span> <strong>CLI: settings + plugin system</strong> — manage config and install plugins from CLI</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Ollama: cloud models</strong> — GPT-OSS, DeepSeek V3.1, Qwen3 Coder with compact prompts</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Cursor routing parity</strong> — fallback chains, diagnostics, full test coverage</li>
+            <li><span class="tag tag-sec">sec</span> YAML CVE fix (GHSA-48c2-rrv3-qjmp), SQL injection remediation in tests</li>
+          </ul>
+        </div>
+        <div class="release-card" style="border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.05);">
+          <div class="release-header">
+            <span class="release-version">v0.55.0</span>
+            <span class="release-date">Mar 27</span>
+          </div>
+          <ul class="release-highlights">
+            <li><span class="tag tag-feat">feat</span> <strong>Cursor: first-class provider</strong> — exit code classification, transient/permanent error detection, 120s idle timeout</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Agent identity signatures</strong> — all GitHub write operations signed with model-aware agent identity</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Memory browser</strong> — full CRUD UI for on-chain ARC-69 memories with search, filter, pagination</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Agent comms visualization</strong> — real-time WebSocket timeline of agent-to-agent messages</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Cron editor</strong> — extracted pipe, presets, inline validation, human-readable schedule preview</li>
+            <li><span class="tag tag-feat">feat</span> <strong>Shared agent library (CRVLIB)</strong> — ARC-69 reusable on-chain agent components</li>
+            <li><span class="tag tag-test">test</span> <strong>Flock e2e: 45 tests</strong> — comprehensive e2e suite with inner transaction fee fix for AVM fee-pooling</li>
+            <li><span class="tag tag-fix">fix</span> MCP tool permissions, scheduler tenant fallback, Ollama readiness probe</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-logo">CorvidAgent</div>
-    <p>Built by <a href="https://github.com/CorvidLabs">CorvidLabs</a> · Feb 6 – Mar 20, 2026</p>
-    <p style="margin-top: 8px;">42 days from zero to a full autonomous AI agent platform.</p>
+    <p>Built by <a href="https://github.com/CorvidLabs">CorvidLabs</a> · Feb 6 – Mar 27, 2026</p>
+    <p style="margin-top: 8px;">50 days from zero to a full autonomous AI agent platform.</p>
   </footer>
 
 </div>
